@@ -18,12 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'api', 'prefix' => 'v1'], function () {
+Route::group(['middleware' => 'api', 'prefix' => 'v1/user'], function () {
     Route::get('get-users', 'API\UserController@fetchAllUser');
     Route::get('get-user', 'API\UserController@getUser');
-    Route::post('user/create', 'API\UserController@store');
-    Route::post('user/update', 'API\UserController@update');
-    Route::post('user/delete', 'API\UserController@destroy');
+    Route::post('create', 'API\UserController@store');
+    Route::post('update', 'API\UserController@update');
+    Route::post('delete', 'API\UserController@destroy');
+});
+
+Route::group(['middleware' => 'api', 'prefix' => 'v1/wallet'], function () {
+    Route::get('get-wallet', 'API\WalletController@getWallet'); 
+    Route::post('add-balance', 'API\WalletTransactionController@addBalance'); 
+    Route::post('min-balance', 'API\WalletTransactionController@minBalance'); 
 });
 
 

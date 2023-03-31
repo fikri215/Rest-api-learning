@@ -57,4 +57,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function wallet()
+    {
+        return $this->belongsTo(Wallet::class);
+    }
 }

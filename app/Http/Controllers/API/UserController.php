@@ -119,7 +119,7 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Update User Success'
-            ]);
+            ], 201);
 
         } catch (\Throwable $th) {
             return response()->json([
@@ -132,8 +132,7 @@ class UserController extends Controller
     public function destroy(Request $request) 
     {
         try {
-            $user = User::where('email', $request->email)->first();
-            // dd($user);
+            $user = User::find($request->user_id);
 
             if (!$user) {
                 return response()->json([
@@ -147,7 +146,7 @@ class UserController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Delete User Success'
-            ]);
+            ], 201);
             
         } catch (\Throwable $th) {
             return response()->json([
